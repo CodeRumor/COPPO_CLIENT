@@ -1,0 +1,18 @@
+﻿version: "3.3"
+services:
+  web-app:
+    container_name: "coppo_client"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4030:4030"
+    networks:
+      default:
+        ipv4_address:  172.18.0.5
+    restart: always
+
+networks:
+  default:
+    external:
+      name: docker-network
