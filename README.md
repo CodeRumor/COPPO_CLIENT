@@ -4,6 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
+Run `docker-compose up --build -d` to lunch the application inside the docker environment. Navigate to `http://localhost:4030/`.
+The app will only reload if you re-run the command shown above.
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
