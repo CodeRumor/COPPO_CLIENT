@@ -26,6 +26,8 @@ export class AuthService{
     return true;
   }
 
+  // Get the authentication token that exists inside localStorage
+  // Return null if no token exits.
   getAuth(): TokenResponse | null{
     const i = localStorage.getItem(this.authKey);
     if(i){
@@ -35,31 +37,29 @@ export class AuthService{
     }
   }
 
+  // Retrieve the access token from the server
+  // If the token exists then the login has been successful so return true.
+  // If the token doesn't not exist then the login has not been successful hence throw an error
   getAuthFromServer(url: string, data: any) : Observable<boolean>{
     return this.http.post<TokenResponse>(url, data)
       .pipe(map((res) => {
 
         let token = res && res.token;
 
-        // if the token is there, login has been successful
         if (token) {
-          // store username and jwt token
           this.setAuth(res);
-          // successful login
           return true;
         }
 
-        // failed login
         return new Error('Unauthorized');
-
       })).pipe(catchError(error =>{
         return new Observable<any>(error);
       }));
   }
 
 
+  // Log the user to the application by passing user name and password.
   login(username: string, password: string) :Observable<boolean>{
-
     return this.getAuthFromServer(this.AUTH_URL, {
       username: username,
       password: password,
@@ -69,18 +69,26 @@ export class AuthService{
     });
   }
 
+  // Determine if the user has been logged in return true if the user is logged in
+  // else return false.
+  isLoggedIn() : boolean{
+    return localStorage.getItem(this.authKey) != null;
+  }
+
+  // Log the user out of this current application by
+  // Set the auth token for this given user to null
   logout(): boolean{
     this.setAuth(null);
     return true;
   }
 
+  // Create a refresh token based on the client information.
   refreshToken(): Observable<boolean>{
     return this.getAuthFromServer(this.AUTH_URL, {
       client_id: this.clientId,
       grant_type: "refresh_token",
       refresh_token: this.getAuth()!.refresh_token,
       scope: "offline_access profile email"
-    })
+    });
   }
-
 }
