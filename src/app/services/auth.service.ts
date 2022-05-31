@@ -14,9 +14,11 @@ export class AuthService{
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: any) {
   }
 
-  // Sets authentication token to local storage.
-  // if auth exists persist auth into localStorage or remove it if a NULL
-  // argument is given.
+  /**
+   * Sets authentication token to local storage.
+   * if auth exists persist auth into localStorage or remove it if a NULL
+   * argument is given.
+   */
   setAuth(auth: TokenResponse | null){
     if(auth){
       localStorage.setItem( this.authKey, JSON.stringify(auth))
@@ -26,8 +28,10 @@ export class AuthService{
     return true;
   }
 
-  // Get the authentication token that exists inside localStorage
-  // Return null if no token exits.
+  /**
+   * Get the authentication token that exist inside localStorage
+   * Return null if no token exits.
+   */
   getAuth(): TokenResponse | null{
     const i = localStorage.getItem(this.authKey);
     if(i){
@@ -37,9 +41,11 @@ export class AuthService{
     }
   }
 
-  // Retrieve the access token from the server
-  // If the token exists then the login has been successful so return true.
-  // If the token doesn't not exist then the login has not been successful hence throw an error
+  /**
+   * Retrieve the access token from the server
+   * If the token exists then the login has been successful so return true.
+   * If the token doesn't not exist then the login has not been successful hence throw an error
+  */
   getAuthFromServer(url: string, data: any) : Observable<boolean>{
     return this.http.post<TokenResponse>(url, data)
       .pipe(map((res) => {
@@ -57,8 +63,10 @@ export class AuthService{
       }));
   }
 
-
-  // Log the user to the application by passing user name and password.
+  /**
+   *
+   * Log the user to the application by passing user name and password.
+   */
   login(username: string, password: string) :Observable<boolean>{
     return this.getAuthFromServer(this.AUTH_URL, {
       username: username,
@@ -69,20 +77,26 @@ export class AuthService{
     });
   }
 
-  // Determine if the user has been logged in return true if the user is logged in
-  // else return false.
-  isLoggedIn() : boolean{
+  /**
+   *  Determine if the user has been logged in return true if the user is logged in
+   * else return false.
+  */
+   isLoggedIn() : boolean{
     return localStorage.getItem(this.authKey) != null;
   }
 
-  // Log the user out of this current application by
-  // Set the auth token for this given user to null
+  /**
+   * Log the user out of the application by setting the auth token value to null
+   * Return true if the process is successful.
+   */
   logout(): boolean{
     this.setAuth(null);
     return true;
   }
 
-  // Create a refresh token based on the client information.
+  /**
+   * Create a refresh token based on the client information.
+  */
   refreshToken(): Observable<boolean>{
     return this.getAuthFromServer(this.AUTH_URL, {
       client_id: this.clientId,
