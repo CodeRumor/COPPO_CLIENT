@@ -48,19 +48,21 @@ export class AuthService{
   */
   getAuthFromServer(url: string, data: any) : Observable<boolean>{
     return this.http.post<TokenResponse>(url, data)
-      .pipe(map((res) => {
+      .pipe(
+        map((res) => {
+          let token = res && res.token;
 
-        let token = res && res.token;
+          if (token) {
+            this.setAuth(res);
+            return true;
+          }
 
-        if (token) {
-          this.setAuth(res);
-          return true;
-        }
+          return new Error('Unauthorized');
+        }),
 
-        return new Error('Unauthorized');
-      })).pipe(catchError(error =>{
-        return new Observable<any>(error);
-      }));
+        catchError(error =>{
+          return new Observable<any>(error);
+        }));
   }
 
   /**
