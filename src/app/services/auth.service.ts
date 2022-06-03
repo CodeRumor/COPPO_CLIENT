@@ -62,7 +62,8 @@ export class AuthService{
 
         catchError(error =>{
           return new Observable<any>(error);
-        }));
+        })
+      );
   }
 
   /**
