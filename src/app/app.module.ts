@@ -9,7 +9,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./services/auth.interceptor";
 import {AuthResponseInterceptor} from "./services/auth.response.interceptor";
 import { RouterModule } from '@angular/router';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule} from "./material.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,9 +22,12 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     RouterModule.forRoot([
       {path: '', component: LoginComponent, pathMatch: 'full'}
-    ])
+    ]),
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,
