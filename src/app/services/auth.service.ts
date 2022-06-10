@@ -1,10 +1,10 @@
 ﻿import {HttpClient} from "@angular/common/http";
 import {catchError, Observable} from "rxjs";
-import {Inject, PLATFORM_ID} from "@angular/core";
+import {Inject, Injectable, PLATFORM_ID} from "@angular/core";
 import {TokenResponse} from "../interfaces/token.response";
-import 'rxjs/Rx';
 import {map} from 'rxjs/operators';
 
+@Injectable()
 export class AuthService{
   authKey: string = "auth";
   clientId: string = "Coppo";
