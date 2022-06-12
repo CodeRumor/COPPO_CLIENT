@@ -1,4 +1,4 @@
-﻿import {HttpClient} from "@angular/common/http";
+﻿import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable} from "rxjs";
 import {Inject, Injectable, PLATFORM_ID} from "@angular/core";
 import {TokenResponse} from "../interfaces/token.response";
@@ -9,7 +9,7 @@ export class AuthService{
   authKey: string = "auth";
   clientId: string = "Coppo";
 
-  AUTH_URL : string =  "http://localhost:8080/api/v1.0/Tokens/Auth";
+  AUTH_URL : string =  "http://localhost:8080/api/v1.0/Tokens/Auth/";
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: any) {
   }
@@ -51,7 +51,6 @@ export class AuthService{
       .pipe(
         map((res) => {
           let token = res && res.token;
-
           if (token) {
             this.setAuth(res);
             return true;
@@ -61,27 +60,28 @@ export class AuthService{
         }),
 
         catchError(error =>{
+          console.log(error);
           return new Observable<any>(error);
         })
       );
   }
 
   /**
-   *
    * Log the user to the application by passing user name and password.
    */
   login(username: string, password: string) :Observable<boolean>{
     return this.getAuthFromServer(this.AUTH_URL, {
+      grantType: "password",
+      clientId: this.clientId,
+      clientSecret: this.clientId,
       username: username,
       password: password,
-      client_id: this.clientId,
-      grant_type: "password",
-      scope: "offline_access profile email"
+      refreshToken: "this.getAuth()!.token"
     });
   }
 
   /**
-   *  Determine if the user has been logged in return true if the user is logged in
+   * Determine if the user has been logged in return true if the user is logged in
    * else return false.
   */
    isLoggedIn() : boolean{
