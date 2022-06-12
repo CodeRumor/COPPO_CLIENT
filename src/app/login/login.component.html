@@ -18,6 +18,10 @@
       <div class ="button" >
         <button [disabled]="form.invalid" mat-button type="submit" (click)="submit()">Login</button>
       </div>
+
+      <p *ngIf="error" class="error">
+        {{ error }}
+      </p>
     </form>
   </mat-card-content>
 </mat-card>
