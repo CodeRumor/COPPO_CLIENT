@@ -1,5 +1,6 @@
-import {Input, Component, OnInit, EventEmitter, Output} from '@angular/core';
-import {FormGroup, FormControl, Form} from '@angular/forms';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators,} from '@angular/forms';
+import {AuthService} from "../services/auth.service";
 
 
 @Component({
@@ -7,31 +8,27 @@ import {FormGroup, FormControl, Form} from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
-  username : FormControl;
-  password: FormControl;
   form: FormGroup;
 
-  constructor() {
-    this.username = new FormControl();
-    this.password = new FormControl();
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
 
-    this.form = new FormGroup({
-      username: this.username,
-      password: this.password
-    });
-
-    this.error = "";
+    this.form = this.formBuilder.group({
+      Username: ['', Validators.required],
+      Password: ['', Validators.required]
+    })
   }
 
-  @Input() error: string | null;
-
-  @Output() submitEm = new EventEmitter();
-
   submit(){
-    if(this.form.valid){
-      this.submitEm.emit(this.form.value);
-    }
+    this.authService.login(this.form.value.Username, this.form.value.Password).subscribe({
+      next : res => {
+        alert(this.authService.getAuth()!.token);
+      },
+      error : error => {
+        console.log(error);
+      }
+    });
   }
 
   ngOnInit(): void {
