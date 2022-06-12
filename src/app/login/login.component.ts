@@ -1,5 +1,6 @@
-import {Input, Component, OnInit, EventEmitter, Output} from '@angular/core';
-import {FormGroup, FormControl, Form} from '@angular/forms';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators,} from '@angular/forms';
+import {AuthService} from "../services/auth.service";
 
 
 @Component({
@@ -7,34 +8,44 @@ import {FormGroup, FormControl, Form} from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
-  username : FormControl;
-  password: FormControl;
-  form: FormGroup;
+  form!: FormGroup;
+  error: string = "";
 
-  constructor() {
-    this.username = new FormControl();
-    this.password = new FormControl();
-
-    this.form = new FormGroup({
-      username: this.username,
-      password: this.password
-    });
-
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.error = "";
   }
 
-  @Input() error: string | null;
-
-  @Output() submitEm = new EventEmitter();
-
-  submit(){
-    if(this.form.valid){
-      this.submitEm.emit(this.form.value);
-    }
-  }
-
   ngOnInit(): void {
+    this.createLoginForm();
   }
 
+  /**
+   * Create the login form used to log the user into the application using the user's name and password.
+   */
+  createLoginForm(){
+    this.form = this.formBuilder.group({
+      Username: ['', Validators.required],
+      Password: ['', Validators.required]
+    });
+  }
+
+  /**
+   * Submit your password and username to the server side allowing you to authenticate to the application.
+   */
+  submit(){
+    this.authService.login(this.form.value.Username, this.form.value.Password).subscribe({
+      next : () => {
+        if(this.authService.getAuth()?.token){
+          this.error = "";
+        }else {
+          this.error = "wrong password and user name";
+        }
+      },
+      error : error => {
+        console.log(error);
+      }
+    });
+  }
 }

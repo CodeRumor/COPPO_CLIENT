@@ -2,7 +2,7 @@
   HttpClient,
   HttpErrorResponse,
   HttpEvent,
-  HttpHandler,
+  HttpHandler, HttpHeaders,
   HttpInterceptor,
   HttpRequest,
   HttpResponse
@@ -64,7 +64,6 @@ export class AuthResponseInterceptor implements HttpInterceptor{
   private handleError(err: any){
     if(err instanceof HttpErrorResponse) {
       if (err.status === 401) {
-
         console.log("Token has expired try refreshing.....")
         this.auth!.refreshToken()
           .subscribe({
