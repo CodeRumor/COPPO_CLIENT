@@ -16,7 +16,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
