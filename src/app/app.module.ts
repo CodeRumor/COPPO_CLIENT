@@ -16,7 +16,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +29,7 @@ import { LoginComponent } from './components/login/login.component';
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot([
-      {path: '', component: LoginComponent, pathMatch: 'full'},
+      {path: '', component: LoginComponent},
       {path: 'app-landing-page', component: LandingPageComponent}
     ]),
     ReactiveFormsModule
