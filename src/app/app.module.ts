@@ -30,7 +30,7 @@ import { LoginComponent } from './components/login/login.component';
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot([
-      {path: '', component: LoginComponent, pathMatch: 'full'},
+      {path: '', component: LoginComponent},
       {path: 'app-landing-page', component: LandingPageComponent}
     ]),
     ReactiveFormsModule
