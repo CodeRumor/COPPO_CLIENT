@@ -1,30 +1,32 @@
-﻿import {Injectable, Injector} from "@angular/core";
-import{ Router} from "@angular/router";
+﻿import { Injectable, Injector } from '@angular/core';
+import { Router } from '@angular/router';
 
 import {
-  HttpHandler, HttpEvent,
-  HttpInterceptor, HttpRequest,
-} from "@angular/common/http";
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
 
-import{AuthService} from "./auth.service";
-import{Observable} from "rxjs";
+import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor{
+@Injectable({ providedIn: 'root' })
+export class AuthInterceptor implements HttpInterceptor {
+  constructor(private injector: Injector, private router: Router) {}
 
-
-  constructor(private injector: Injector, private router: Router) {
-  }
-
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const auth = this.injector.get(AuthService);
-    const token =(auth.isLoggedIn()) ? auth.getAuth()!.token : null;
+    const token = auth.isLoggedIn() ? auth.getAuth()!.token : null;
 
-    if(token){
+    if (token) {
       request = request.clone({
-        setHeaders : {
-          Authorization: `Bearer ${token}`
-        }
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
       });
     }
 
