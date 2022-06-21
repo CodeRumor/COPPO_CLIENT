@@ -2,54 +2,51 @@
   HttpClient,
   HttpErrorResponse,
   HttpEvent,
-  HttpHandler, HttpHeaders,
+  HttpHandler,
+  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
-  HttpResponse
-} from "@angular/common/http";
+  HttpResponse,
+} from '@angular/common/http';
 
+import { Injectable, Injector } from '@angular/core';
+import { Router } from '@angular/router';
+import { catchError, Observable } from 'rxjs';
+import { AuthService } from './auth.service';
+import { tap } from 'rxjs/operators';
 
-import {Injectable, Injector} from "@angular/core";
-import {Router} from "@angular/router";
-import {catchError, Observable} from "rxjs";
-import {AuthService} from "./auth.service";
-import {tap} from 'rxjs/operators';
-
-@Injectable()
-export class AuthResponseInterceptor implements HttpInterceptor{
+@Injectable({ providedIn: 'root' })
+export class AuthResponseInterceptor implements HttpInterceptor {
   currentRequest?: HttpRequest<any>;
   auth?: AuthService;
 
-  constructor(private injector: Injector, private router: Router){
-
-  }
+  constructor(private injector: Injector, private router: Router) {}
 
   /**
    * Check if a token a exist and do nothing if it does
    */
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     this.auth = this.injector.get(AuthService);
-    const token = (this.auth.isLoggedIn()) ? this.auth.getAuth()!.token : null;
+    const token = this.auth.isLoggedIn() ? this.auth.getAuth()!.token : null;
 
-    if(token){
-
+    if (token) {
       this.currentRequest = request;
 
-      return next.handle(request)
-        .pipe(
-          tap((event: HttpEvent<any>) => {
-            if(event instanceof  HttpResponse){
-              console.log("The event is part of Http response");
-            }}
-          ),
+      return next.handle(request).pipe(
+        tap((event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse) {
+            console.log('The event is part of Http response');
+          }
+        }),
 
-          catchError(error => {
-            return this.handleError(error);
-          })
-        );
-    }
-    else
-    {
+        catchError((error) => {
+          return this.handleError(error);
+        })
+      );
+    } else {
       return next.handle(request);
     }
   }
@@ -61,15 +58,14 @@ export class AuthResponseInterceptor implements HttpInterceptor{
    * If it is not successful we perform a logout and clear al the expired tokens from the local storage.
    * then redirect the user back to the login page.
    */
-  private handleError(err: any){
-    if(err instanceof HttpErrorResponse) {
+  private handleError(err: any) {
+    if (err instanceof HttpErrorResponse) {
       if (err.status === 401) {
-        console.log("Token has expired try refreshing.....")
-        this.auth!.refreshToken()
-          .subscribe({
-            next: this.getNext(),
-            error: this.getError()
-          });
+        console.log('Token has expired try refreshing.....');
+        this.auth!.refreshToken().subscribe({
+          next: this.getNext(),
+          error: this.getError(),
+        });
       }
     }
     return new Observable<any>(err);
@@ -79,8 +75,8 @@ export class AuthResponseInterceptor implements HttpInterceptor{
    * Log any errors that occur.
    */
   private getError() {
-    return (error : any) => {
-      console.log(error)
+    return (error: any) => {
+      console.log(error);
     };
   }
 
@@ -88,24 +84,24 @@ export class AuthResponseInterceptor implements HttpInterceptor{
    * Attempt to resubmit the request if that fails then log failed and return
    * to the login page.
    */
-  private getNext() : any  {
+  private getNext(): any {
     return (res: any) => {
-      if (res ) {
-        console.log("refresh token successful");
+      if (res) {
+        console.log('refresh token successful');
 
         const http = this.injector.get(HttpClient);
-        http.request(this.currentRequest!).subscribe(
-          result => {
-            console.log("resubmitting the request");
+        http.request(this.currentRequest!).subscribe({
+          next: () => {
+            console.log('resubmitting the request');
           },
-          error => {
-            console.log(error)
-          }
-        )
+          error: (err) => {
+            console.log(err);
+          },
+        });
       } else {
-        console.log("refresh token failed");
+        console.log('refresh token failed');
         this.auth!.logout();
-        this.router.navigate(["login"]);
+        this.router.navigate(['login']);
       }
     };
   }
