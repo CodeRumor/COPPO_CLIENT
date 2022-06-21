@@ -1,20 +1,25 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators,} from '@angular/forms';
-import {AuthService} from "../../services/auth.service";
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserRightsService } from 'src/app/services/user.rights.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-
 export class LoginComponent implements OnInit {
   form!: FormGroup;
-  error: string = "";
+  error: string = '';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
-    this.error = "";
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private userRightsService: UserRightsService
+  ) {
+    this.error = '';
   }
 
   ngOnInit(): void {
@@ -22,30 +27,33 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Create the login form used to log the user into the application using the user's name and password.
+   * Submit your password and username to the server side allowing you to authenticate to the application.
    */
-  createLoginForm(){
-    this.form = this.formBuilder.group({
-      Username: ['', Validators.required],
-      Password: ['', Validators.required]
-    });
+  public submit() {
+    this.authService
+      .login(this.form.value.Username, this.form.value.Password)
+      .subscribe({
+        next: () => {
+          if (this.authService.getAuth()?.token) {
+            this.error = '';
+            this.router.navigate(['landingpage']);
+          } else {
+            this.error = 'wrong password and user name';
+          }
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 
   /**
-   * Submit your password and username to the server side allowing you to authenticate to the application.
+   * Create the login form used to log the user into the application using the user's name and password.
    */
-  submit(){
-    this.authService.login(this.form.value.Username, this.form.value.Password).subscribe({
-      next : () => {
-        if(this.authService.getAuth()?.token){
-          this.error = "";
-        }else {
-          this.error = "wrong password and user name";
-        }
-      },
-      error : error => {
-        console.log(error);
-      }
+  private createLoginForm() {
+    this.form = this.formBuilder.group({
+      Username: ['', Validators.required],
+      Password: ['', Validators.required],
     });
   }
 }
