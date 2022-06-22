@@ -6,11 +6,11 @@ import { UserSignInGuard } from './guards/user.signIn.guard';
 
 const routes: Routes = [
   {
-    path: 'landingpage',
+    path: 'home',
     canActivate: [UserAuthorisationGuard],
     loadChildren: () =>
-      import('../app/components/landing-page/landing-page.routing.module').then(
-        (m) => m.LandingPageRoutingModule
+      import('./components/home/home.routing.module').then(
+        (m) => m.HomeRoutingModule
       ),
   },
   {
