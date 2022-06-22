@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserRightsService } from 'src/app/services/user.rights.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -16,8 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    private userRightsService: UserRightsService
+    private router: Router
   ) {
     this.error = '';
   }
