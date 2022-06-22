@@ -1,4 +1,22 @@
-<div>
-  <p>home works!</p>
-  <button (click)="logout()">Log Out</button>
-</div>
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  Coppo
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <app-navbar></app-navbar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <div>Main content</div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
