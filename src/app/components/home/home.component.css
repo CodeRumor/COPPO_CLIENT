@@ -19,9 +19,7 @@ mat-sidenav {
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
-
   padding: 16px;
-
   overflow: auto;
 }
 
@@ -45,10 +43,4 @@ mat-sidenav-container {
   margin-top: 2px;
   font-size: 0.7rem;
   color: lightgrey;
-}
-
-mat-divider {
-  margin-top: 16px;
-  margin-bottom: 16px;
-  background-color: rgba(255, 255, 255, 0.5);
 }

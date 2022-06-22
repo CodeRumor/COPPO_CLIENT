@@ -3,7 +3,6 @@
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
-  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
   HttpResponse,
