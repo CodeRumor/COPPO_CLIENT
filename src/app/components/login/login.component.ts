@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         next: () => {
           if (this.authService.getAuth()?.token) {
             this.error = '';
-            this.router.navigate(['landingpage']);
+            this.router.navigate(['home']);
           } else {
             this.error = 'wrong password and user name';
           }

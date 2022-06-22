@@ -28,7 +28,7 @@ export class UserSignInGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.authService.isLoggedIn() == true) {
-      this.router.navigate(['landingpage']);
+      this.router.navigate(['home']);
       return false;
     }
 

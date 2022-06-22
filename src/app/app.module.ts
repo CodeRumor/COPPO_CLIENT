@@ -13,11 +13,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, LandingPageComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -27,7 +27,7 @@ import { LoginComponent } from './components/login/login.component';
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      { path: 'landingpage', component: LandingPageComponent },
+      { path: 'home', component: HomeComponent },
     ]),
     ReactiveFormsModule,
   ],
