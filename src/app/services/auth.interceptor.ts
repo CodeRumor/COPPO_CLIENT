@@ -15,7 +15,14 @@ import { Observable } from 'rxjs';
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private injector: Injector, private router: Router) {}
 
-  intercept(
+  /**
+   * The aim of this method is to change the outgoing request to include the token that we have just obtain
+   * and pass this token along side the authorization header.
+   * @param request to be modified and include a token to.
+   * @param next to be used a way to pass controll to the next interceptor in the chain if there is any.
+   * @returns controll to the next interceptor in the chain if there is any.
+   */
+  public intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {

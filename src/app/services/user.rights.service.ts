@@ -12,6 +12,9 @@ export class UserRightsService {
     private userstateService: UserStateService
   ) {}
 
+  /**
+   * Set user information into the state service to be accessed across the entire application.
+   */
   public setUserInfor() {
     this.getUserInfor()
       .pipe()
@@ -28,6 +31,10 @@ export class UserRightsService {
       });
   }
 
+  /**
+   * get user information from the api.
+   * @returns user information.
+   */
   public getUserInfor(): Observable<[string, string]> {
     let userData: [string, string];
 
@@ -43,6 +50,10 @@ export class UserRightsService {
     );
   }
 
+  /**
+   * Allows us to have access to the current user that has been logged into the application.
+   * @returns the user information obtained from the api.
+   */
   private triggerLoggedInUser(): Observable<any> {
     return this.http.get(this.AUTH_URL).pipe(
       map((res) => {
