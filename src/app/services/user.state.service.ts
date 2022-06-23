@@ -5,11 +5,19 @@ import { BehaviorSubject } from 'rxjs';
 export class UserStateService {
   state$ = new BehaviorSubject<any>(null);
 
-  getState(): any {
+  /**
+   * gets the state stored in the behaviour subject.
+   * @returns the vaule stored in the state, in this case the value will be user information.
+   */
+  public getState(): any {
     return this.state$.value;
   }
 
-  setState(user: any): void {
+  /**
+   * sets the state in the behaviour subject.
+   * @param user information about a user for which we are trying to add to the behaviour subject.
+   */
+  public setState(user: any): void {
     this.state$.next(user);
   }
 }

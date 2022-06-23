@@ -14,7 +14,13 @@ export class UserAuthorisationGuard implements CanActivate {
   state: any;
   constructor(private router: Router, private authService: AuthService) {}
 
-  canActivate(
+  /**
+   * Specifies the condition for which a given route should be accessible.
+   * @param route contains the information about a route associated with a component.
+   * @param state represents the state of the router at a particular moment in time.
+   * @returns true if the conditions are met else false
+   */
+  public canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ):

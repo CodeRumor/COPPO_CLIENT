@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   /**
-   * This is used for instences where code might not have loaded completely.
+   * We place code inside this method to ensure that it only runs when
+   * the application compleletly loads.
    */
   ngAfterViewInit() {
     this.observer
@@ -42,7 +43,8 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * Clear the user token from local storage and navigate to the login page.
+   * Log the user out of the application by clearing the user token from local
+   *  storage and navigate to the login page.
    */
   public logout() {
     this.authService.logout();

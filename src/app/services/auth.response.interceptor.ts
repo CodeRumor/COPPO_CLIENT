@@ -24,7 +24,7 @@ export class AuthResponseInterceptor implements HttpInterceptor {
   /**
    * Check if a token a exist and do nothing if it does
    */
-  intercept(
+  public intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
