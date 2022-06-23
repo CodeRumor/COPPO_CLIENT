@@ -21,7 +21,6 @@ export class UserRightsService {
           this.state.userName = res.userName;
           this.state.type = res.type;
           this.userstateService.setState(this.state);
-          console.log(this.state);
         },
         error: (err: any) => {
           console.log(err);
@@ -35,7 +34,6 @@ export class UserRightsService {
     return this.triggerLoggedInUser().pipe(
       map((data) => {
         userData = [data.username, data.usertype];
-
         return data;
       }),
       catchError((error) => {
