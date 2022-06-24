@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent, NavbarComponent],
@@ -29,6 +30,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'user-detail', component: UserDetailComponent },
     ]),
     ReactiveFormsModule,
   ],
