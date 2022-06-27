@@ -1,29 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable } from 'rxjs';
-import { UserStateService } from './user.state.service';
+import { COMMON } from '../common';
+import { UserDetails } from '../interfaces/user.details';
 
 @Injectable({ providedIn: 'root' })
-export class UserRightsService {
+export class UserInforService {
   AUTH_URL: string = 'http://localhost:8080/api/v1.0/Users/me/';
   state: any;
-  constructor(
-    private http: HttpClient,
-    private userstateService: UserStateService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   /**
    * Set user information into the state service to be accessed across the entire application.
    */
-  public setUserInfor() {
+  public setCurrentUser() {
     this.getUserInfor()
       .pipe()
       .subscribe({
-        next: (res: any) => {
-          this.state = {};
-          this.state.userName = res.userName;
-          this.state.type = res.type;
-          this.userstateService.setState(this.state);
+        next: (res: UserDetails) => {
+          localStorage.setItem(COMMON.CURRENT_USER, JSON.stringify(res));
         },
         error: (err: any) => {
           console.log(err);
@@ -35,13 +30,10 @@ export class UserRightsService {
    * get user information from the api.
    * @returns user information.
    */
-  public getUserInfor(): Observable<[string, string]> {
-    let userData: [string, string];
-
+  private getUserInfor(): Observable<UserDetails> {
     return this.triggerLoggedInUser().pipe(
-      map((data) => {
-        userData = [data.username, data.usertype];
-        return data;
+      map((data: UserDetails) => {
+        return { userName: data.userName, type: data.type };
       }),
       catchError((error) => {
         console.log(error);

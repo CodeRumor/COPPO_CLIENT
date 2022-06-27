@@ -3,7 +3,8 @@ import { catchError, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { TokenResponse } from '../interfaces/token.response';
 import { map } from 'rxjs/operators';
-import { UserRightsService } from './user.rights.service';
+import { UserInforService } from './user.info.service';
+import { COMMON } from '../common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -15,7 +16,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private userRightsService: UserRightsService
+    private userInforService: UserInforService
   ) {}
 
   /**
@@ -36,7 +37,7 @@ export class AuthService {
    */
   public login(username: string, password: string): Observable<boolean> {
     return this.getAuthFromServer(this.AUTH_URL, {
-      grantType: 'password',
+      grantType: COMMON.GRANT_TYPE_LOGIN,
       clientId: this.clientId,
       clientSecret: this.clientId,
       username: username,
@@ -68,7 +69,7 @@ export class AuthService {
   public refreshToken(): Observable<boolean> {
     return this.getAuthFromServer(this.AUTH_URL, {
       client_id: this.clientId,
-      grant_type: 'refresh_token',
+      grant_type: COMMON.GRANT_TYPE_REFRESH,
       refresh_token: this.getAuth()!.refresh_token,
       scope: 'offline_access profile email',
     });
@@ -82,7 +83,7 @@ export class AuthService {
   private setAuth(auth: TokenResponse | null) {
     if (auth) {
       localStorage.setItem(this.authKey, JSON.stringify(auth));
-      this.userRightsService.setUserInfor();
+      this.userInforService.setCurrentUser();
     } else {
       localStorage.removeItem(this.authKey);
     }
