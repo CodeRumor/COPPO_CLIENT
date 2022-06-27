@@ -29,8 +29,12 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      { path: 'home', component: HomeComponent },
-      { path: 'user-detail', component: UserDetailComponent },
+      {
+        path: 'home',
+        component: HomeComponent,
+        children: [{ path: 'user-detail', component: UserDetailComponent }],
+      },
+      { path: '**', redirectTo: '' },
     ]),
     ReactiveFormsModule,
   ],
