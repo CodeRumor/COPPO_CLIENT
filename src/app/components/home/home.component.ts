@@ -42,6 +42,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  public home() {
+    this.router.navigate(['home']);
+  }
+
   /**
    * Log the user out of the application by clearing the user token from local
    *  storage and navigate to the login page.
