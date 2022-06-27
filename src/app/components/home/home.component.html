@@ -7,7 +7,12 @@
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
     <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
   </button>
-  Coppo
+  <div>
+    <button (click)="home()" mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <span>COPPO</span>
+    </button>
+  </div>
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -16,7 +21,9 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="content mat-elevation-z8">
-      <div>Main content</div>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
