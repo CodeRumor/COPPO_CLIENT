@@ -5,6 +5,7 @@ import { TokenResponse } from '../interfaces/token.response';
 import { map } from 'rxjs/operators';
 import { UserInforService } from './user.info.service';
 import { COMMON } from '../common';
+import { SettingService } from './settings.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -12,11 +13,12 @@ export class AuthService {
   clientId: string = 'Coppo';
   state: any;
 
-  AUTH_URL: string = 'http://localhost:8080/api/v1.0/Tokens/Auth/';
+  AUTH_URL: string = this.settings.getTokenUrl() + '/Auth';
 
   constructor(
     private http: HttpClient,
-    private userInforService: UserInforService
+    private userInforService: UserInforService,
+    private settings: SettingService
   ) {}
 
   /**
