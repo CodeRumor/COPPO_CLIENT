@@ -36,6 +36,9 @@ export class AuthService {
 
   /**
    * Log the user to the application by passing user name and password.
+   * @param username the user name for the user begin logged in.
+   * @param password the password for the user begin logged in
+   * @returns true if successfull else false.
    */
   public login(username: string, password: string): Observable<boolean> {
     return this.getAuthFromServer(this.AUTH_URL, {
@@ -81,6 +84,8 @@ export class AuthService {
    * Sets authentication token to local storage.
    * if auth exists persist auth into localStorage or remove it if a NULL
    * argument is given.
+   * @param auth the token response being set.
+   * @returns
    */
   private setAuth(auth: TokenResponse | null) {
     if (auth) {
@@ -96,6 +101,9 @@ export class AuthService {
    * Retrieve the access token from the server
    * If the token exists then the login has been successful so return true.
    * If the token doesn't not exist then the login has not been successful hence throw an error
+   * @param url the URL for which Auth is begin obtain
+   * @param data
+   * @returns
    */
   private getAuthFromServer(url: string, data: any): Observable<boolean> {
     return this.http.post<TokenResponse>(url, data).pipe(
