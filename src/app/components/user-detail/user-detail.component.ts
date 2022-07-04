@@ -13,5 +13,6 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = localStorage.getItem(COMMON.CURRENT_USER);
+    console.log(this.user);
   }
 }
