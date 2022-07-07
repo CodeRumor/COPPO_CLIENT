@@ -10,8 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
-  user: any;
-
   ngOnInit(): void {}
 
   /**
@@ -29,7 +27,25 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['home/user-detail']);
   }
 
+  /**
+   * Directs a user to a user list page where the user will be able to see a list of all users.
+   */
   public userList() {
     this.router.navigate(['home/user-list']);
+  }
+
+  /**
+   * Determines if the user that has logged in ia an admin user.
+   * @returns Returns true is the user logged in is an admin else false
+   */
+  public IsAdminUser(): boolean {
+    return this.authService.isLoggedInAsAdmin();
+  }
+
+  /**
+   * Directs a user to the home page.
+   */
+  public home() {
+    this.router.navigate(['home']);
   }
 }

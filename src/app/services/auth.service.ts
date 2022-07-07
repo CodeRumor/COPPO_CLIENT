@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { UserInforService } from './user.info.service';
 import { COMMON } from '../common';
 import { SettingService } from './settings.service';
+import { UserDetails } from '../interfaces/user.details';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -57,6 +58,27 @@ export class AuthService {
    */
   public isLoggedIn(): boolean {
     return localStorage.getItem(this.authKey) != null;
+  }
+
+  // private getUserType(): string {
+  //   var userType = localStorage.getItem(COMMON.CURRENT_USER);
+  //   return userType.type;
+  // }
+
+  /**
+   * Determine if the user that has logged in is an admin user.
+   * @returns true if the user that has logged in is an admin else false
+   */
+  public isLoggedInAsAdmin(): boolean {
+    var user: UserDetails = JSON.parse(
+      localStorage.getItem(COMMON.CURRENT_USER)!.toString()
+    );
+
+    if (user.type == 'Admin') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**

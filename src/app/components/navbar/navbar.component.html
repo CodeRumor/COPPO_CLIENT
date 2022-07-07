@@ -1,18 +1,23 @@
-<mat-list role="list">
-  <mat-list-item role="listitem">
-    <button (click)="userList()" mat-button class="menu-button">
-      <mat-icon>list</mat-icon>
-      <span>User List</span>
-    </button>
-  </mat-list-item>
-  <mat-list-item role="listitem">
-    <button (click)="setting()" mat-button class="menu-button">
-      <mat-icon>account_circle</mat-icon>
-      <span>Settings</span>
-    </button>
-  </mat-list-item>
-</mat-list>
-
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <mat-button-toggle (click)="home()">
+        <mat-icon>home</mat-icon>Home
+      </mat-button-toggle>
+    </mat-list-item>
+    <mat-list-item *ngIf="IsAdminUser()" role="listitem">
+      <mat-button-toggle (click)="userList()">
+        <mat-icon>list</mat-icon>User List
+      </mat-button-toggle>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <mat-button-toggle (click)="setting()">
+        <mat-icon>account_circle</mat-icon>
+        Settings
+      </mat-button-toggle>
+    </mat-list-item>
+  </mat-list>
+</mat-button-toggle-group>
 <mat-divider></mat-divider>
 
 <button (click)="logout()" mat-button class="menu-button">
