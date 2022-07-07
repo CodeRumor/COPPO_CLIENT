@@ -3,3 +3,12 @@ mat-divider {
   margin-bottom: 16px;
   background-color: rgba(2, 2, 2, 0.9);
 }
+
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard {
+  border: solid 1px white;
+}
+
+.mat-button-toggle {
+  width: 110px;
+}
