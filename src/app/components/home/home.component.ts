@@ -42,19 +42,6 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  public home() {
-    this.router.navigate(['home']);
-  }
-
-  /**
-   * Log the user out of the application by clearing the user token from local
-   *  storage and navigate to the login page.
-   */
-  public logout() {
-    this.authService.logout();
-    this.router.navigate(['login']);
-  }
-
   /**
    * Determines if the slide action should be activated or not.
    * @param res the size of the page for when the side action should be activated.
