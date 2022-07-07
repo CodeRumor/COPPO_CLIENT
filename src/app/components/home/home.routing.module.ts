@@ -3,6 +3,7 @@ import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
+import { UserListComponent } from '../user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
       {
         path: 'user-detail',
         component: UserDetailComponent,
+        canActivate: [UserAuthorisationGuard],
+      },
+      {
+        path: 'user-list',
+        component: UserListComponent,
         canActivate: [UserAuthorisationGuard],
       },
     ],

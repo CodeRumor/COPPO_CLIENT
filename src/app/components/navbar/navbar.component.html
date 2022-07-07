@@ -1,7 +1,17 @@
-<button (click)="setting()" mat-button class="menu-button">
-  <mat-icon>settings</mat-icon>
-  <span>Account Settings</span>
-</button>
+<mat-list role="list">
+  <mat-list-item role="listitem">
+    <button (click)="userList()" mat-button class="menu-button">
+      <mat-icon>list</mat-icon>
+      <span>User List</span>
+    </button>
+  </mat-list-item>
+  <mat-list-item role="listitem">
+    <button (click)="setting()" mat-button class="menu-button">
+      <mat-icon>account_circle</mat-icon>
+      <span>Settings</span>
+    </button>
+  </mat-list-item>
+</mat-list>
 
 <mat-divider></mat-divider>
 
