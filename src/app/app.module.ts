@@ -16,33 +16,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { UserDetailComponent } from './components/user-detail/user-detail.component';
-import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    HomeComponent,
-    NavbarComponent,
-    UserListComponent,
-  ],
+  declarations: [AppComponent, LoginComponent, HomeComponent, NavbarComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    RouterModule.forRoot([
-      { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      {
-        path: 'home',
-        component: HomeComponent,
-        children: [{ path: 'user-detail', component: UserDetailComponent }],
-      },
-      { path: '**', redirectTo: '' },
-    ]),
     ReactiveFormsModule,
   ],
   providers: [
