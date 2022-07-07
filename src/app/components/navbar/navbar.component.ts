@@ -28,4 +28,8 @@ export class NavbarComponent implements OnInit {
   public setting() {
     this.router.navigate(['home/user-detail']);
   }
+
+  public userList() {
+    this.router.navigate(['home/user-list']);
+  }
 }
