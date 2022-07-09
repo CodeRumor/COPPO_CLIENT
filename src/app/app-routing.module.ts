@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'user-list',
     canActivate: [UserAuthorisationGuard],
     loadChildren: () =>
-      import('../app/components/user-list/user-list.routing.module').then(
+      import('./components/home/user-list/user-list.routing.module').then(
         (m) => m.UserListRoutingModule
       ),
   },
