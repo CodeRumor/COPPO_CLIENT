@@ -1,16 +1,16 @@
-:host{
+:host {
   display: flex;
   justify-content: center;
   margin: 100px 0;
 }
 
 mat-card-title,
-mat-card-content{
+mat-card-content {
   display: flex;
   justify-content: center;
 }
 
-.mat-form-field{
+.mat-form-field {
   width: 100%;
   min-width: 300px;
 }
@@ -25,12 +25,12 @@ mat-card-content{
   border-radius: 30px;
 }
 
-.button{
+.button {
   display: flex;
   justify-content: flex-end;
 }
 
-.logout-button{
+.logout-button {
   display: flex;
   justify-content: left;
 }

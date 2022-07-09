@@ -60,25 +60,12 @@ export class AuthService {
     return localStorage.getItem(this.authKey) != null;
   }
 
-  // private getUserType(): string {
-  //   var userType = localStorage.getItem(COMMON.CURRENT_USER);
-  //   return userType.type;
-  // }
-
   /**
    * Determine if the user that has logged in is an admin user.
    * @returns true if the user that has logged in is an admin else false
    */
   public isLoggedInAsAdmin(): boolean {
-    var user: UserDetails = JSON.parse(
-      localStorage.getItem(COMMON.CURRENT_USER)!.toString()
-    );
-
-    if (user.type == 'Admin') {
-      return true;
-    } else {
-      return false;
-    }
+    return this.userInforService.getUserDetail().type == COMMON.AdminUser;
   }
 
   /**

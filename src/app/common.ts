@@ -4,4 +4,6 @@ export const COMMON = {
   GRANT_TYPE_LOGIN: 'password',
   GRANT_TYPE_REFRESH: 'refresh_token',
   NAV_SELECTION: 'navSelection',
+  AdminUser: 'Admin',
+  NormalUser: 'User',
 };
