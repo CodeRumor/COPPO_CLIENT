@@ -2,9 +2,9 @@ import { UserAuthorisationGuard } from 'src/app/guards/user.authorisation.guard'
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { UserDetailComponent } from '../user-detail/user-detail.component';
-import { UserListComponent } from '../user-list/user-list.component';
+import { UserListComponent } from './user-list/user-list.component';
 import { UserAdminAuthorisationGuard } from 'src/app/guards/user-admin.authorisation.guard';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routes: Routes = [
   {

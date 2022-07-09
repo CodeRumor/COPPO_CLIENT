@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { COMMON } from '../../common';
+import { COMMON } from '../../../common';
 
 @Component({
   selector: 'app-user-detail',
