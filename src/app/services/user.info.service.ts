@@ -13,17 +13,29 @@ export class UserInforService {
   /**
    * Set user information into the state service to be accessed across the entire application.
    */
-  public setCurrentUser() {
-    this.getUserInfor()
-      .pipe()
-      .subscribe({
-        next: (res: UserDetails) => {
-          localStorage.setItem(COMMON.CURRENT_USER, JSON.stringify(res));
-        },
-        error: (err: any) => {
-          console.log(err);
-        },
-      });
+  public setCurrentUser(): void {
+    this.getUserInfor().subscribe({
+      next: (res: UserDetails) => {
+        localStorage.setItem(COMMON.CURRENT_USER, JSON.stringify(res));
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
+  }
+
+  /**
+   * Get the current user that has been store in the local storage.
+   * @returns Returns the current user stored in local storage.
+   */
+  public getUserDetail(): UserDetails {
+    var userDetail = localStorage.getItem(COMMON.CURRENT_USER);
+
+    if (userDetail == null) {
+      userDetail = '{}';
+    }
+
+    return JSON.parse(userDetail);
   }
 
   /**
