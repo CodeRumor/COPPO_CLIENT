@@ -65,15 +65,7 @@ export class AuthService {
    * @returns true if the user that has logged in is an admin else false
    */
   public isLoggedInAsAdmin(): boolean {
-    var user: UserDetails = JSON.parse(
-      localStorage.getItem(COMMON.CURRENT_USER)!.toString()
-    );
-
-    if (user.type == 'Admin') {
-      return true;
-    } else {
-      return false;
-    }
+    return this.userInforService.getUserDetail().type == COMMON.AdminUser;
   }
 
   /**
