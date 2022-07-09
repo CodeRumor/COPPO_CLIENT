@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
+  let authService: AuthService;
   let fixture: ComponentFixture<NavbarComponent>;
 
   beforeEach(async () => {
