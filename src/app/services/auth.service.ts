@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { UserInforService } from './user.info.service';
 import { COMMON } from '../common';
 import { SettingService } from './settings.service';
-import { UserDetails } from '../interfaces/user.details';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
