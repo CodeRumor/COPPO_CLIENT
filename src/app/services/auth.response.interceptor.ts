@@ -7,7 +7,6 @@
   HttpRequest,
   HttpResponse,
 } from '@angular/common/http';
-
 import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable } from 'rxjs';

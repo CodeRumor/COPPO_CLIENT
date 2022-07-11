@@ -1,13 +1,11 @@
-﻿import { Injectable, Injector } from '@angular/core';
-import { Router } from '@angular/router';
-
-import {
+﻿import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-
+import { Injectable, Injector } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 
