@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { SiginComponent } from './components/sigin/sigin.component';
+import { SigninComponent } from './components/sigin/signin.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { SiginComponent } from './components/sigin/sigin.component';
     LoginComponent,
     HomeComponent,
     NavbarComponent,
-    SiginComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,

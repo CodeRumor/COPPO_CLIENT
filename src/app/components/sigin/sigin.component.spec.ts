@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiginComponent } from './sigin.component';
+import { SigninComponent } from './signin.component';
 
-describe('SiginComponent', () => {
-  let component: SiginComponent;
-  let fixture: ComponentFixture<SiginComponent>;
+describe('SigninComponent', () => {
+  let component: SigninComponent;
+  let fixture: ComponentFixture<SigninComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SiginComponent ]
-    })
-    .compileComponents();
+      declarations: [SigninComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SiginComponent);
+    fixture = TestBed.createComponent(SigninComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
