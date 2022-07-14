@@ -1,13 +1,13 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { LoginComponent } from './login.component';
-import { UserSignInGuard } from 'src/app/guards/user.signIn.guard';
+import { UserLoginInGuard } from 'src/app/guards/user.login.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    canActivate: [UserSignInGuard],
+    canActivate: [UserLoginInGuard],
     data: { breadcrum: 'login', title: 'login' },
   },
 ];
