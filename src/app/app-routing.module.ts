@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserAuthorisationGuard } from './guards/user.authorisation.guard';
-import { UserSignInGuard } from './guards/user.signIn.guard';
+import { UserLoginInGuard } from './guards/user.login.guard';
 
 const routes: Routes = [
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    canActivate: [UserSignInGuard],
+    canActivate: [UserLoginInGuard],
     loadChildren: () =>
       import('../app/components/login/login.routing.module').then(
         (m) => m.LoginRoutingModule
@@ -29,8 +29,16 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'signin',
+    canActivate: [UserLoginInGuard],
+    loadChildren: () =>
+      import('./components/signin/signin.routing.module').then(
+        (m) => m.SigninRoutingModule
+      ),
+  },
+  {
     path: '',
-    canActivate: [UserSignInGuard],
+    canActivate: [UserLoginInGuard],
     loadChildren: () =>
       import('../app/components/login/login.routing.module').then(
         (m) => m.LoginRoutingModule

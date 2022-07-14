@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class UserSignInGuard implements CanActivate {
+export class UserLoginInGuard implements CanActivate {
   state: any;
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -28,8 +28,8 @@ export class UserSignInGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.isLoggedIn() == true) {
-      this.router.navigate(['home']);
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['home']).then(r => {console.log("navigating to home page")});
       return false;
     }
 

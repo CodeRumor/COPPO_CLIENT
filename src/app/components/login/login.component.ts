@@ -45,6 +45,10 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  public createAccount() {
+    this.router.navigate(['signin']);
+  }
+
   /**
    * Create the login form used to log the user into the application using the user's name and password.
    */
