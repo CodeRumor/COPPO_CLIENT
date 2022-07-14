@@ -25,9 +25,14 @@ mat-card-content {
   border-radius: 30px;
 }
 
-.button {
-  display: flex;
-  justify-content: flex-end;
+.login-button {
+  display: inline;
+  justify-content: right;
+}
+
+.sigin-button {
+  display: inline;
+  justify-content: left;
 }
 
 .logout-button {
