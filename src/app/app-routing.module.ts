@@ -21,14 +21,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'user-list',
-    canActivate: [UserAuthorisationGuard],
-    loadChildren: () =>
-      import('./components/home/user-list/user-list.routing.module').then(
-        (m) => m.UserListRoutingModule
-      ),
-  },
-  {
     path: 'signin',
     canActivate: [UserLoginInGuard],
     loadChildren: () =>
