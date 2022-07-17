@@ -11,7 +11,7 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './components/home/navbar/navbar.component';
 import { SigninComponent } from './components/signin/signin.component';
 
 @NgModule({
