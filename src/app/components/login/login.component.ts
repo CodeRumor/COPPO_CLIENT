@@ -45,6 +45,9 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  /**
+   * Direct the user to the page used to create and account.
+   */
   public createAccount() {
     this.router.navigate(['signin']);
   }
