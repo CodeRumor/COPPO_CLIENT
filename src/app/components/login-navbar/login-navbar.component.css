@@ -1,0 +1,13 @@
+mat-button-toggle {
+  min-width: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+mat-button-toggle-group {
+  border: none;
+  padding: 30px 30px 30px 30px;
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+}
