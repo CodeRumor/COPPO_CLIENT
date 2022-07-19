@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserType } from 'src/app/interfaces/user.type';
 
 @Component({
-  selector: 'app-signin',
+  selector: 'app-create-user',
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.css'],
 })
