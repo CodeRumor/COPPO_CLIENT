@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/home/navbar/navbar.component';
-import { SigninComponent } from './components/signin/signin.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { LoginNavbarComponent } from './components/login-navbar/login-navbar.component';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { LoginNavbarComponent } from './components/login-navbar/login-navbar.com
     LoginComponent,
     HomeComponent,
     NavbarComponent,
-    SigninComponent,
+    CreateAccountComponent,
     LoginNavbarComponent,
   ],
   imports: [
