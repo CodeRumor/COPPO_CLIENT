@@ -1,14 +1,14 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { SigninComponent } from './signin.component';
+import { CreateAccountComponent } from './create-account.component';
 import { UserLoginInGuard } from 'src/app/guards/user.login.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: SigninComponent,
+    component: CreateAccountComponent,
     canActivate: [UserLoginInGuard],
-    data: { breadcrum: 'sigin', title: 'signin' },
+    data: { breadcrum: 'create-account', title: 'create-account' },
   },
 ];
 
@@ -16,4 +16,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SigninRoutingModule {}
+export class CreateAccountRoutingModule {}

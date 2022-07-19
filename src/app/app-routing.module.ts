@@ -21,11 +21,11 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'signin',
+    path: 'create-account',
     canActivate: [UserLoginInGuard],
     loadChildren: () =>
-      import('./components/signin/signin.routing.module').then(
-        (m) => m.SigninRoutingModule
+      import('./components/create-account/create-account.routing.module').then(
+        (m) => m.CreateAccountRoutingModule
       ),
   },
   {

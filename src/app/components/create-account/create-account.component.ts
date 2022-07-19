@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserType } from 'src/app/interfaces/user.type';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css'],
+  selector: 'app-create-user',
+  templateUrl: './create-account.component.html',
+  styleUrls: ['./create-account.component.css'],
 })
-export class SigninComponent implements OnInit {
+export class CreateAccountComponent implements OnInit {
   userTypes: UserType[] = [
     { value: 'Admin', viewValue: 'Admin' },
     { value: 'User', viewValue: 'User' },
