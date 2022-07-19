@@ -16,6 +16,6 @@ export class LoginNavbarComponent implements OnInit {
   }
 
   public createUser() {
-    this.router.navigate(['signin']);
+    this.router.navigate(['create-account']);
   }
 }
