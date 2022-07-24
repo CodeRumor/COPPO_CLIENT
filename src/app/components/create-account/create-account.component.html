@@ -38,7 +38,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>User Type</mat-label>
-        <mat-select>
+        <mat-select formControlName="UserType">
           <mat-option
             *ngFor="let userType of userTypes"
             [value]="userType.value"
