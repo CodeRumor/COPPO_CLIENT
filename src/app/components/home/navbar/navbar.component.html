@@ -10,11 +10,10 @@
     </button>
   </mat-list-item>
 
-  <mat-list-item>
+  <mat-list-item *ngIf="IsAdminUser()">
     <button
       mat-button
       class="menu-button"
-      *ngIf="IsAdminUser()"
       [style.background-color]="userListToggle ? '#e9ecef' : ''"
       (click)="userList()"
     >
