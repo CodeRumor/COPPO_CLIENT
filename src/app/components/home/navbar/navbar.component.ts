@@ -10,7 +10,16 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  homeToggle!: boolean;
+  settingToggle!: boolean;
+  userListToggle!: boolean;
+  userDetailToggle!: boolean;
+
+  ngOnInit(): void {
+    if (this.router.url == '/home') {
+      this.homeToggle = true;
+    }
+  }
 
   /**
    * logs the user out of the application and navigates the user to the login page.
@@ -24,6 +33,8 @@ export class NavbarComponent implements OnInit {
    * Directs a user to a user setting page where the user will be able to see there settings.
    */
   public setting() {
+    this._resetToggles();
+    this.settingToggle = true;
     this.router.navigate(['home/user-detail']);
   }
 
@@ -31,6 +42,8 @@ export class NavbarComponent implements OnInit {
    * Directs a user to a user list page where the user will be able to see a list of all users.
    */
   public userList() {
+    this._resetToggles();
+    this.userListToggle = true;
     this.router.navigate(['home/user-list']);
   }
 
@@ -46,6 +59,15 @@ export class NavbarComponent implements OnInit {
    * Directs a user to the home page.
    */
   public home() {
+    this._resetToggles();
+    this.homeToggle = true;
     this.router.navigate(['home']);
+  }
+
+  private _resetToggles(): void {
+    this.homeToggle = false;
+    this.userListToggle = false;
+    this.userDetailToggle = false;
+    this.settingToggle = false;
   }
 }
