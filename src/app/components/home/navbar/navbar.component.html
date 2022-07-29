@@ -1,28 +1,43 @@
-<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-  <mat-list role="list">
-    <mat-list-item role="listitem">
-      <mat-button-toggle (click)="home()">
-        <mat-icon>home</mat-icon>Home
-      </mat-button-toggle>
-    </mat-list-item>
+<mat-list>
+  <mat-list-item role="listitem">
+    <button
+      mat-button
+      class="menu-button"
+      [style.background-color]="homeToggle ? '#e9ecef' : ''"
+      (click)="home()"
+    >
+      <mat-icon>home</mat-icon>Home
+    </button>
+  </mat-list-item>
 
-    <mat-list-item *ngIf="IsAdminUser()" role="listitem">
-      <mat-button-toggle (click)="userList()">
-        <mat-icon>list</mat-icon>User List
-      </mat-button-toggle>
-    </mat-list-item>
+  <mat-list-item>
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="IsAdminUser()"
+      [style.background-color]="userListToggle ? '#e9ecef' : ''"
+      (click)="userList()"
+    >
+      <mat-icon>list</mat-icon>User List
+    </button>
+  </mat-list-item>
 
-    <mat-list-item role="listitem">
-      <mat-button-toggle (click)="setting()">
-        <mat-icon>account_circle</mat-icon>
-        Settings
-      </mat-button-toggle>
-    </mat-list-item>
-  </mat-list>
-</mat-button-toggle-group>
-<mat-divider></mat-divider>
+  <mat-list-item>
+    <button
+      mat-button
+      class="menu-button"
+      [style.background-color]="settingToggle ? '#e9ecef' : ''"
+      (click)="setting()"
+    >
+      <mat-icon>account_circle</mat-icon>
+      Settings
+    </button>
+  </mat-list-item>
 
-<button (click)="logout()" mat-button class="menu-button">
-  <mat-icon>logout</mat-icon>
-  <span>Log Out</span>
-</button>
+  <mat-divider></mat-divider>
+
+  <button (click)="logout()" mat-button class="menu-button">
+    <mat-icon>logout</mat-icon>
+    <span>Log Out</span>
+  </button>
+</mat-list>
