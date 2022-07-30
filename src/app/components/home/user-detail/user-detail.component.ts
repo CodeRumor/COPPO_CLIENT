@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetails } from 'src/app/interfaces/user.details';
+import { UserInforService } from 'src/app/services/user.info.service';
 import { COMMON } from '../../../common';
 
 @Component({
@@ -10,8 +11,8 @@ import { COMMON } from '../../../common';
 export class UserDetailComponent implements OnInit {
   public user: UserDetails;
 
-  constructor() {
-    this.user = JSON.parse(localStorage.getItem(COMMON.CURRENT_USER)!);
+  constructor(private userDetail: UserInforService) {
+    this.user = userDetail.getUserDetail();
   }
 
   ngOnInit(): void {
