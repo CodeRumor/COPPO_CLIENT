@@ -10,10 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
-  homeToggle!: boolean;
-  settingToggle!: boolean;
-  userListToggle!: boolean;
-  userDetailToggle!: boolean;
+  public homeToggle!: boolean;
+  public settingToggle!: boolean;
+  public userListToggle!: boolean;
+  public userDetailToggle!: boolean;
 
   ngOnInit(): void {
     if (this.router.url == '/home') {

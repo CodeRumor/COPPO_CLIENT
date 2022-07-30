@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserDetails } from 'src/app/interfaces/user.details';
+import { UserInforService } from 'src/app/services/user.info.service';
 import { COMMON } from '../../../common';
 
 @Component({
@@ -7,12 +9,14 @@ import { COMMON } from '../../../common';
   styleUrls: ['./user-detail.component.css'],
 })
 export class UserDetailComponent implements OnInit {
-  user: any;
+  public user: UserDetails;
 
-  constructor() {}
+  constructor(private userDetail: UserInforService) {
+    this.user = userDetail.getUserDetail();
+  }
 
   ngOnInit(): void {
-    this.user = localStorage.getItem(COMMON.CURRENT_USER);
-    console.log(this.user);
+    console.log('user type', this.user.type);
+    console.log('user name', this.user.userName);
   }
 }

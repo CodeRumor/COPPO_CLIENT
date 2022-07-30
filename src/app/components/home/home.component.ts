@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       .pipe(delay(1), untilDestroyed(this))
       .subscribe({
         next: (res: any) => {
-          this.shouldNavSlide(res);
+          this._shouldNavSlide(res);
         },
         error: (err: any) => {
           console.log(err);
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
    * Determines if the slide action should be activated or not.
    * @param res the size of the page for when the side action should be activated.
    */
-  private shouldNavSlide(res: any) {
+  private _shouldNavSlide(res: any) {
     if (res.matches) {
       this.sidenav.mode = 'over';
       this.sidenav.close();

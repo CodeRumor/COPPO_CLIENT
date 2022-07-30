@@ -41,7 +41,7 @@ export class AuthService {
    * @returns true if successfull else false.
    */
   public login(username: string, password: string): Observable<boolean> {
-    return this.getAuthFromServer(this.AUTH_URL, {
+    return this._getAuthFromServer(this.AUTH_URL, {
       grantType: COMMON.GRANT_TYPE_LOGIN,
       clientId: this.clientId,
       clientSecret: this.clientId,
@@ -72,7 +72,7 @@ export class AuthService {
    * Return true if the process is successful.
    */
   public logout(): boolean {
-    this.setAuth(null);
+    this._setAuth(null);
     return true;
   }
 
@@ -80,7 +80,7 @@ export class AuthService {
    * Create a refresh token based on the client information.
    */
   public refreshToken(): Observable<boolean> {
-    return this.getAuthFromServer(this.AUTH_URL, {
+    return this._getAuthFromServer(this.AUTH_URL, {
       client_id: this.clientId,
       grant_type: COMMON.GRANT_TYPE_REFRESH,
       refresh_token: this.getAuth()!.refresh_token,
@@ -95,7 +95,7 @@ export class AuthService {
    * @param auth the token response being set.
    * @returns
    */
-  private setAuth(auth: TokenResponse | null) {
+  private _setAuth(auth: TokenResponse | null) {
     if (auth) {
       localStorage.setItem(this.authKey, JSON.stringify(auth));
       this.userInforService.setCurrentUser();
@@ -113,12 +113,12 @@ export class AuthService {
    * @param data
    * @returns
    */
-  private getAuthFromServer(url: string, data: any): Observable<boolean> {
+  private _getAuthFromServer(url: string, data: any): Observable<boolean> {
     return this.http.post<TokenResponse>(url, data).pipe(
       map((res) => {
         let token = res && res.token;
         if (token) {
-          this.setAuth(res);
+          this._setAuth(res);
           return true;
         }
 

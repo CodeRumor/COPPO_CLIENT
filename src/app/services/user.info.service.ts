@@ -14,7 +14,7 @@ export class UserInforService {
    * Set user information into the state service to be accessed across the entire application.
    */
   public setCurrentUser(): void {
-    this.getUserInfor().subscribe({
+    this._getUserInfor().subscribe({
       next: (res: UserDetails) => {
         localStorage.setItem(COMMON.CURRENT_USER, JSON.stringify(res));
       },
@@ -42,8 +42,8 @@ export class UserInforService {
    * get user information from the api.
    * @returns user information.
    */
-  private getUserInfor(): Observable<UserDetails> {
-    return this.getLoggedInUser().pipe(
+  private _getUserInfor(): Observable<UserDetails> {
+    return this._getLoggedInUser().pipe(
       map((data: UserDetails) => {
         return { userName: data.userName, type: data.type };
       }),
@@ -58,7 +58,7 @@ export class UserInforService {
    * Allows us to have access to the current user that has been logged into the application.
    * @returns the user information obtained from the api.
    */
-  private getLoggedInUser(): Observable<any> {
+  private _getLoggedInUser(): Observable<any> {
     return this.http.get(this.settings.getUserUrl() + '/me').pipe(
       map((res) => {
         return res;

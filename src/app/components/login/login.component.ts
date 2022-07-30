@@ -9,8 +9,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  form!: FormGroup;
-  error: string = '';
+  public form!: FormGroup;
+  public error: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.createLoginForm();
+    this._createLoginForm();
   }
 
   /**
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   /**
    * Create the login form used to log the user into the application using the user's name and password.
    */
-  private createLoginForm() {
+  private _createLoginForm() {
     this.form = this.formBuilder.group({
       Username: ['', Validators.required],
       Password: ['', Validators.required],

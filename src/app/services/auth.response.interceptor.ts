@@ -61,8 +61,8 @@ export class AuthResponseInterceptor implements HttpInterceptor {
       if (err.status === 401) {
         console.log('Token has expired try refreshing.....');
         this.auth!.refreshToken().subscribe({
-          next: this.getNext(),
-          error: this.getError(),
+          next: this._getNext(),
+          error: this._getError(),
         });
       }
     }
@@ -72,7 +72,7 @@ export class AuthResponseInterceptor implements HttpInterceptor {
   /**
    * Log any errors that occur.
    */
-  private getError() {
+  private _getError() {
     return (error: any) => {
       console.log(error);
     };
@@ -82,7 +82,7 @@ export class AuthResponseInterceptor implements HttpInterceptor {
    * Attempt to resubmit the request if that fails then log failed and return
    * to the login page.
    */
-  private getNext(): any {
+  private _getNext(): any {
     return (res: any) => {
       if (res) {
         console.log('refresh token successful');
