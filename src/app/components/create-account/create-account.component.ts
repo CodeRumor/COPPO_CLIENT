@@ -8,14 +8,15 @@ import { UserType } from 'src/app/interfaces/user.type';
   styleUrls: ['./create-account.component.css'],
 })
 export class CreateAccountComponent implements OnInit {
-  userTypes: UserType[] = [
+  public userTypes: UserType[] = [
     { value: 'Admin', viewValue: 'Admin' },
     { value: 'User', viewValue: 'User' },
   ];
 
+  public createAccountForm!: FormGroup;
+  public error: string = '';
+
   constructor(private formBuilder: FormBuilder) {}
-  createAccountForm!: FormGroup;
-  error: string = '';
 
   ngOnInit(): void {
     this.createAccountForm = this.formBuilder.group({
