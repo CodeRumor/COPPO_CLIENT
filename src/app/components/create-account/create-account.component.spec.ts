@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account.component';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatOptionModule } from '@angular/material/core';
 
 describe('CreateAccountComponent', () => {
   let component: CreateAccountComponent;
@@ -8,7 +13,17 @@ describe('CreateAccountComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
+      imports: [
+        ReactiveFormsModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        FormsModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatInputModule,
+      ],
       declarations: [CreateAccountComponent],
     }).compileComponents();
   });
