@@ -9,8 +9,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  form!: FormGroup;
-  error: string = '';
+  public form!: FormGroup;
+  public error: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
